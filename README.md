@@ -15,6 +15,7 @@ Follow these steps to run this project smoothly:
 * 5 - Run all cells from the [ETL_Python.ipynb](https://github.com/cesaraugusto98/loadsmart/blob/develop/python/ETL_Python.ipynb) jupyter notebook
 * 6 - Grab a cup of **coffee** while the ETL_Python.ipynb is running
 * 7 - Open the [Loadsmart General Dashboard.pbix](https://github.com/cesaraugusto98/loadsmart/blob/develop/powerbi/Loadsmart%20General%20Dashboard.pbix) and refresh the data
+* 	7.1 - If you face a problem with MySQL connector, I've uploaded the MySQL Conector installer inside the powerbi folder
 * 8 - Now you are ready to deep dive the data
 
 ##### I'm available for questions, possible fixes and most import to improve this solution.
