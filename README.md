@@ -13,7 +13,7 @@ Follow these steps to run this project smoothly:
 * 3 - Install the required libs from [requirements.txt](https://github.com/cesaraugusto98/loadsmart/blob/develop/python/requirements.txt) file available inside python folder;
 * 4 - Run [DDL_LOADSMART_DW_LOCALHOST.sql](https://github.com/cesaraugusto98/loadsmart/blob/develop/database/DDL_LOADSMART_DW_LOCALHOST.sql) at MySQL to create the DW database, tables, and the respective users;
 * 5 - Run all cells from the [ETL_Python.ipynb](https://github.com/cesaraugusto98/loadsmart/blob/develop/python/ETL_Python.ipynb) jupyter notebook;
-* 6 - Grab a cup of **coffee** while the ETL_Python.ipynb is running;
+* 6 - Grab a cup of ☕ while the ETL_Python.ipynb is running 😄;
 * 7 - Open the [Loadsmart General Dashboard.pbix](https://github.com/cesaraugusto98/loadsmart/blob/develop/powerbi/Loadsmart%20General%20Dashboard.pbix) and refresh the data;
 * 	7.1 - If you face a problem with MySQL connector, I've uploaded the MySQL Conector installer inside the powerbi folder;
 * 8 - Now you are ready to deep dive into the data.
