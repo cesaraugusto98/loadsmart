@@ -1,3 +1,23 @@
+-- CREATING DATABASE
+DROP DATABASE IF EXISTS loadsmart_dw;
+CREATE DATABASE Loadsmart_dw;
+
+-- CREATING SERVICE ACCOUNT AND READ ACCOUNT
+DROP USER IF EXISTS 'loadsmart_user'@'localhost';
+CREATE USER 'loadsmart_user'@'localhost' IDENTIFIED BY 'loadsmart_user';
+
+DROP USER IF EXISTS 'loadsmart_read'@'localhost';
+CREATE USER 'loadsmart_read'@'localhost' IDENTIFIED BY 'loadsmart_read';
+
+GRANT ALL PRIVILEGES ON * . * TO 'loadsmart_user'@'localhost';
+GRANT SELECT ON LOADSMART_DW.* TO 'loadsmart_read'@'localhost';
+ 
+FLUSH PRIVILEGES;
+
+
+USE loadsmart_dw;
+
+-- REMOVING TABLE DEPENDENCES
 DROP TABLE IF EXISTS FactTransport;
 
 DROP TABLE IF EXISTS FactSales;
@@ -79,17 +99,12 @@ CREATE TABLE FactSales(
 	source_price DOUBLE,
 	pnl_value DOUBLE,
 	minutes_between_quote_book INT,
-	last_update DATETIME,
+	last_update DATETIME DEFAULT curtime(),
 	FOREIGN KEY (sk_carrier_code) REFERENCES DimCarrier(sk_code),
 	FOREIGN KEY (sk_shipper_code) REFERENCES DimShipper(sk_code),
 	FOREIGN KEY (sk_load_code) REFERENCES DimLoad(sk_code),
 	FOREIGN KEY (sk_route_code) REFERENCES DimRoute(sk_code)
 );
-
-
--- SELECT * FROM FactSales fct
--- INNER JOIN DimLoad lod on fct.sk_load_code = lod.sk_code
--- where sk_load_code = 117;
 
 -- CREATING FACT Transport
 DROP TABLE IF EXISTS FactTransport;
@@ -101,18 +116,17 @@ CREATE TABLE FactTransport(
 	sk_route_code INT DEFAULT  -1,
 	pickup_datetime DATETIME,
 	pickup_appointment_datetime DATETIME,
+	fl_carrier_on_time_to_pickup BOOLEAN,
 	delivery_datetime DATETIME,
 	delivery_appointment_datetime  DATETIME,
+	fl_carrier_on_time_to_delivery BOOLEAN,
+	fl_carrier_on_time_overall BOOLEAN,
 	mileage_value DOUBLE,
 	days_between_pickup_delivery INT,
 	hours_between_pickup_delivery INT,
-	last_update DATETIME,
+	last_update DATETIME DEFAULT curtime(),
 	FOREIGN KEY (sk_carrier_code) REFERENCES DimCarrier(sk_code),
 	FOREIGN KEY (sk_shipper_code) REFERENCES DimShipper(sk_code),
 	FOREIGN KEY (sk_load_code) REFERENCES DimLoad(sk_code),
 	FOREIGN KEY (sk_route_code) REFERENCES DimRoute(sk_code)
 );
-
--- SELECT * FROM FactTransport fct
--- INNER JOIN DimLoad lod on fct.sk_load_code = lod.sk_code
--- where sk_load_code = 117;
